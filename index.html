@@ -4,34 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>openpi.ai | The Infinite Intelligence Interface</title>
-    <meta name="description" content="Acquire openpi.ai - The premier domain for AGI, Mathematical Computing, and Neural Architecture. A bridge between infinite constants and artificial intelligence.">
-    <meta name="keywords" content="openpi, AI domain, AGI, Artificial Intelligence, Premium Domain, Pi, 3.14, Machine Learning, Future Tech">
-    <meta name="author" content="Apple Design Philosophy">
+    <meta name="description" content="Acquire openpi.ai - The premier domain for AGI, Mathematical Computing, and Neural Architecture.">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://openpi.ai/">
-    <meta property="og:title" content="openpi.ai - Define the Radius of Intelligence">
-    <meta property="og:description" content="Premium Asset Sale. $31,415. The constant for the next generation of AI.">
-    
-    <!-- Schema.org Structured Data for Rich Snippets -->
+    <!-- Google Fonts for Math & Tech -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=JetBrains+Mono:wght@300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "openpi.ai Domain Name",
-      "image": "",
-      "description": "Premium category-defining domain name for Artificial General Intelligence and Mathematical AI projects.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Domain Asset"
-      },
+      "name": "openpi.ai Domain",
       "offers": {
         "@type": "Offer",
         "url": "https://www.spaceship.com/s/buy/openpi.ai/rzv705rALhDnVTjj",
         "priceCurrency": "USD",
         "price": "31415",
-        "priceValidUntil": "2027-03-14",
         "availability": "https://schema.org/InStock"
       }
     }
@@ -39,409 +29,388 @@
 
     <style>
         :root {
-            --bg-color: #000000;
+            --bg-color: #050505;
             --text-primary: #f5f5f7;
             --text-secondary: #86868b;
-            --accent-pi: #FF5E3A; /* Organic warmth */
-            --accent-ai: #00F2FF; /* Digital cool */
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
+            --math-gold: #D4AF37; /* Classic Academic Gold */
+            --accent-ai: #00F2FF;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        /* --- Background Animation (The Pi Stream) --- */
-        .pi-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 70%);
-            opacity: 0.6;
-        }
-        
-        .orbit-lines {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vw;
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 50%;
-            animation: pulse 10s infinite ease-in-out;
-        }
-        
-        .orbit-lines::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            right: 10%;
-            bottom: 10%;
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 50%;
-        }
-
-        /* --- Hero Section --- */
-        header {
-            height: 90vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        }
+
+        /* --- Ambient Background --- */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 30%, #1a1a1a 0%, #000 70%);
+        }
+        
+        .grid-lines {
+            position: absolute;
+            width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        }
+
+        /* --- Header: Smaller & Higher --- */
+        header {
+            padding-top: 4vh;
             text-align: center;
-            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
         }
 
         .domain-name {
-            font-size: clamp(3rem, 10vw, 8rem);
-            letter-spacing: -0.02em;
-            display: flex;
+            font-size: clamp(2rem, 4vw, 3rem); /* Much smaller than before */
+            letter-spacing: -0.01em;
+            display: inline-flex;
             align-items: baseline;
-            gap: 0.2em;
-            cursor: default;
+            gap: 0.1em;
+            cursor: pointer;
+            transition: opacity 0.3s;
         }
 
-        /* Dynamic Font Effect: openpi (Organic, Breathing) */
         .part-pi {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
             font-weight: 300;
-            background: linear-gradient(120deg, #fff, #a1a1a6);
+            background: linear-gradient(180deg, #fff, #bbb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: "SF Pro Display", serif; /* Elegant contrast */
-            animation: breathe 4s ease-in-out infinite;
+            animation: breathe 5s infinite ease-in-out;
         }
 
-        /* Dynamic Font Effect: .ai (Digital, Glitch) */
         .part-ai {
-            font-weight: 700;
-            font-family: "Courier New", monospace;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            font-size: 0.9em;
             color: var(--accent-ai);
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
-            animation: flicker 3s infinite alternate;
+            text-shadow: 0 0 8px rgba(0, 242, 255, 0.4);
+            animation: glitch 4s infinite alternate;
         }
 
-        .tagline {
-            margin-top: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            opacity: 0;
-            animation: fadeUp 1s ease-out 1s forwards;
-        }
-
-        /* --- The 12 Sectors (Grid) --- */
-        .grid-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s;
+        /* --- Central Stage: The Formula Loop (Red Box Area) --- */
+        .formula-stage {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
+            min-height: 40vh; /* Occupy the central visual space */
+            perspective: 1000px;
+        }
+
+        .formula-container {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: absolute;
+            width: 100%;
+            padding: 0 20px;
+            text-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .formula-container.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+        
+        .formula-container.exit {
+            opacity: 0;
+            transform: translateY(-20px) scale(1.05);
+            filter: blur(10px);
+        }
+
+        .formula-annotation {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-style: normal;
+        }
+
+        /* --- Bottom Section: 12 Concepts & CTA --- */
+        .bottom-panel {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 2rem 0 3rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .concepts-ticker {
+            width: 100%;
             overflow: hidden;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 1rem;
         }
 
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.3);
+        .ticker-track {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        .ticker-item {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .ticker-item span { color: var(--accent-ai); margin-right: 5px; }
+
+        .cta-group {
+            text-align: center;
         }
 
-        .card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
             color: #fff;
         }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        .card::after {
-            content: 'π';
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            font-size: 8rem;
-            opacity: 0.03;
-            font-family: serif;
-        }
-
-        /* --- Pricing & CTA --- */
-        .pricing-section {
-            text-align: center;
-            padding: 8rem 2rem;
-            background: linear-gradient(to top, #000, transparent);
-        }
-
-        .price-tag {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
+        
         .installments {
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 3rem;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .cta-container {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin-left: 10px;
+            font-weight: 400;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            border-radius: 980px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            cursor: pointer;
         }
 
-        .btn-primary {
+        .btn-buy {
             background: #fff;
             color: #000;
-            border: 1px solid #fff;
         }
+        .btn-buy:hover { box-shadow: 0 0 20px rgba(255,255,255,0.3); transform: scale(1.05); }
 
-        .btn-primary:hover {
-            background: #e5e5e5;
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        }
-
-        .btn-secondary {
+        .btn-contact {
             background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
             color: #fff;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(5px);
         }
+        .btn-contact:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
 
-        .btn-secondary:hover {
-            border-color: #fff;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* --- Footer & Disclaimer --- */
         footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        .disclaimer {
-            font-size: 0.75rem;
-            color: #555;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #444;
             max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+            text-align: center;
         }
 
-        /* --- Animations --- */
-        @keyframes breathe {
-            0%, 100% { font-variation-settings: "wght" 300; opacity: 1; }
-            50% { font-variation-settings: "wght" 350; opacity: 0.9; }
-        }
+        /* Animations */
+        @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        @keyframes glitch { 0%, 100% { opacity: 1; } 95% { opacity: 1; transform: skew(0deg); } 96% { opacity: 0.8; transform: skew(10deg); } 97% { opacity: 1; transform: skew(0deg); } }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(0, 242, 255, 0.5); }
-            20%, 24%, 55% { opacity: 0.5; text-shadow: none; }
-        }
-
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-            from { opacity: 0; transform: translateY(20px); }
-        }
-
-        /* Toast Notification */
+        /* Toast */
         #toast {
             visibility: hidden;
-            min-width: 250px;
             background-color: #333;
             color: #fff;
             text-align: center;
-            border-radius: 50px;
-            padding: 16px;
+            border-radius: 4px;
+            padding: 12px 24px;
             position: fixed;
-            z-index: 1;
+            z-index: 100;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
         }
-
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
 <body>
 
-    <div class="pi-bg">
-        <div class="orbit-lines"></div>
+    <div class="ambient-bg">
+        <div class="grid-lines"></div>
     </div>
 
+    <!-- 1. HEADER (Smaller & Higher) -->
     <header>
-        <h1 class="domain-name">
+        <div class="domain-name">
             <span class="part-pi">openpi</span><span class="part-ai">.ai</span>
-        </h1>
-        <p class="tagline">The Universal Constant of Artificial General Intelligence</p>
+        </div>
     </header>
 
-    <main>
-        <section class="grid-container">
-            <!-- 12 Concepts integrating Math, Pi, and AI -->
-            <article class="card">
-                <h3>The Hidden Architect</h3>
-                <p>Neural networks built on Gaussian distributions ($\sqrt{2\pi}$). The foundation of all learning.</p>
-            </article>
-            <article class="card">
-                <h3>String Theory Code</h3>
-                <p>Unlocking the recently discovered Pi structures within high-energy particle scattering amplitudes.</p>
-            </article>
-            <article class="card">
-                <h3>Feynman Point</h3>
-                <p>Rationality within chaos. Bringing structure to the "999999" anomaly of infinite data.</p>
-            </article>
-            <article class="card">
-                <h3>Infinite Context</h3>
-                <p>Like Pi, the context window is expanding towards infinity. Total recall for AGI.</p>
-            </article>
-            <article class="card">
-                <h3>Generative Geometry</h3>
-                <p>AI that understands the perfect circle. From pixel approximation to vector perfection.</p>
-            </article>
-            <article class="card">
-                <h3>The Ramanujan Engine</h3>
-                <p>AI algorithms that don't just calculate, but "intuit" new mathematical formulas from noise.</p>
-            </article>
-            <article class="card">
-                <h3>Quantum Calculation</h3>
-                <p>Preparing for the era where Pi is computed not by bits, but by qubits in superposition.</p>
-            </article>
-            <article class="card">
-                <h3>Circular Economics</h3>
-                <p>Web3 and AI integration for autonomous, self-sustaining financial loops.</p>
-            </article>
-            <article class="card">
-                <h3>Biometric Encryption</h3>
-                <p>Identity verification based on the infinite non-repeating uniqueness of biological data.</p>
-            </article>
-            <article class="card">
-                <h3>Normal Number Storage</h3>
-                <p>The theory that Pi contains every possible code. AI as the miner of this universal library.</p>
-            </article>
-            <article class="card">
-                <h3>Cosmic Calibration</h3>
-                <p>Aligning AGI benchmarks with universal physical constants for absolute truth.</p>
-            </article>
-            <article class="card">
-                <h3>The Perfect Loop</h3>
-                <p>Automation workflows that close the gap between request and execution.</p>
-            </article>
-        </section>
-
-        <section class="pricing-section">
-            <h2 class="price-tag">$31,415</h2>
-            <div class="installments">Available in 5 Monthly Installments</div>
-            
-            <div class="cta-container">
-                <a href="#" onclick="buyAction()" class="btn btn-primary">Acquire Asset</a>
-                <button onclick="copyEmail()" class="btn btn-secondary">Contact Broker</button>
-            </div>
-        </section>
+    <!-- 2. MAIN STAGE (Red Box Area for Formulas) -->
+    <main class="formula-stage" id="stage">
+        <!-- Formulas will be injected here by JS -->
     </main>
 
-    <footer>
-        <p class="disclaimer">
-            &copy; 2026 OpenPi Concept. All rights reserved.<br><br>
-            Disclaimer: OpenPi.ai is a premium domain asset available for acquisition. 
-            References to mathematical constants, scientific theories, or "Pi" are for branding and conceptual purposes only. 
-            This domain is not affiliated with the Raspberry Pi Foundation, Inflection AI, or any specific academic institution. 
-            Transaction facilitated securely via Spaceship.com.
-        </p>
-    </footer>
+    <!-- 3. BOTTOM PANEL (Ticker & CTA) -->
+    <div class="bottom-panel">
+        <!-- Scrolling 12 Concepts -->
+        <div class="concepts-ticker">
+            <div class="ticker-track">
+                <!-- Duplicated list for seamless scrolling -->
+                <div class="ticker-item"><span>01</span>Hidden Architect</div>
+                <div class="ticker-item"><span>02</span>String Theory Code</div>
+                <div class="ticker-item"><span>03</span>Feynman Point</div>
+                <div class="ticker-item"><span>04</span>Infinite Context</div>
+                <div class="ticker-item"><span>05</span>Generative Geometry</div>
+                <div class="ticker-item"><span>06</span>Ramanujan Engine</div>
+                <div class="ticker-item"><span>07</span>Quantum Calculation</div>
+                <div class="ticker-item"><span>08</span>Circular Economics</div>
+                <div class="ticker-item"><span>09</span>Biometric Encryption</div>
+                <div class="ticker-item"><span>10</span>Normal Number Storage</div>
+                <div class="ticker-item"><span>11</span>Cosmic Calibration</div>
+                <div class="ticker-item"><span>12</span>The Perfect Loop</div>
+                
+                <!-- Repeat -->
+                <div class="ticker-item"><span>01</span>Hidden Architect</div>
+                <div class="ticker-item"><span>02</span>String Theory Code</div>
+                <div class="ticker-item"><span>03</span>Feynman Point</div>
+                <div class="ticker-item"><span>04</span>Infinite Context</div>
+                <div class="ticker-item"><span>05</span>Generative Geometry</div>
+                <div class="ticker-item"><span>06</span>Ramanujan Engine</div>
+                <div class="ticker-item"><span>07</span>Quantum Calculation</div>
+                <div class="ticker-item"><span>08</span>Circular Economics</div>
+                <div class="ticker-item"><span>09</span>Biometric Encryption</div>
+                <div class="ticker-item"><span>10</span>Normal Number Storage</div>
+                <div class="ticker-item"><span>11</span>Cosmic Calibration</div>
+                <div class="ticker-item"><span>12</span>The Perfect Loop</div>
+            </div>
+        </div>
 
-    <div id="toast">Email copied to clipboard</div>
+        <div class="cta-group">
+            <div class="price-display">
+                $31,415 <span class="installments">/ 5 mo split</span>
+            </div>
+            <a href="#" onclick="buyAction()" class="btn btn-buy">Acquire Asset</a>
+            <button onclick="copyEmail()" class="btn btn-contact">Contact</button>
+        </div>
+
+        <footer>
+            Disclaimer: Premium domain asset. Not affiliated with Raspberry Pi or Inflection AI. <br>
+            Secure transaction via Spaceship.com.
+        </footer>
+    </div>
+
+    <div id="toast">Email joshua369x@gmail.com copied</div>
 
     <script>
-        // Copy Email Function
+        // --- FORMULA DATA ---
+        // Using HTML entities for math symbols to ensure cross-browser compatibility without heavy libraries
+        const formulas = [
+            {
+                math: "e^{i\\pi} + 1 = 0",
+                desc: "Euler's Identity: The Most Beautiful Equation"
+            },
+            {
+                math: "\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}",
+                desc: "The Gaussian Integral: AI's Probability Core"
+            },
+            {
+                math: "R_{\\mu\\nu} - \\frac{1}{2}Rg_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4}T_{\\mu\\nu}",
+                desc: "Einstein Field Equations: Geometry of Spacetime"
+            },
+            {
+                math: "\\frac{1}{\\pi} = \\frac{2\\sqrt{2}}{9801} \\sum_{k=0}^\\infty \\dots",
+                desc: "Ramanujan's Infinite Series"
+            },
+            {
+                math: "\\psi(x) = \\frac{1}{\\sqrt{2\\pi}} \\int_{-\\infty}^{\\infty} \\dots",
+                desc: "Fourier Transform: The Language of Signal"
+            }
+        ];
+
+        let currentIndex = 0;
+        const stage = document.getElementById('stage');
+
+        function createFormulaElement(data) {
+            const div = document.createElement('div');
+            div.className = 'formula-container';
+            // Simple replacement for LaTeX rendering visualization
+            // For production, one might use MathJax, but for this pure design, we style text.
+            // We use a specific serif font to make plain text look like math.
+            div.innerHTML = `
+                ${data.math}
+                <span class="formula-annotation">${data.desc}</span>
+            `;
+            return div;
+        }
+
+        function cycleFormulas() {
+            // clear current
+            const current = stage.querySelector('.formula-container.active');
+            if (current) {
+                current.classList.remove('active');
+                current.classList.add('exit');
+                setTimeout(() => current.remove(), 1200);
+            }
+
+            // add new
+            const nextData = formulas[currentIndex];
+            const nextEl = createFormulaElement(nextData);
+            stage.appendChild(nextEl);
+            
+            // Trigger reflow
+            void nextEl.offsetWidth; 
+            
+            nextEl.classList.add('active');
+
+            currentIndex = (currentIndex + 1) % formulas.length;
+        }
+
+        // Init
+        cycleFormulas();
+        setInterval(cycleFormulas, 5000); // Change every 5 seconds
+
+        // --- ACTIONS ---
         function copyEmail() {
             const email = "joshua369x@gmail.com";
             navigator.clipboard.writeText(email).then(() => {
                 const toast = document.getElementById("toast");
                 toast.className = "show";
-                setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
+                setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
             });
         }
 
-        // Buy Action - Opens two windows as requested for maximum conversion
         function buyAction() {
-            // Primary Action: Open the sales page
-            const salesUrl = "https://www.spaceship.com/s/buy/openpi.ai/rzv705rALhDnVTjj";
-            window.open(salesUrl, '_blank');
-            
-            // Secondary Logic: We can focus the user or provide analytics here.
-            // Since browsers block multiple popups, we focus on the main direct link 
-            // but ensure the button visual feedback is immediate.
-            console.log("Initiating acquisition sequence for OpenPi.ai");
+            window.open("https://www.spaceship.com/s/buy/openpi.ai/rzv705rALhDnVTjj", '_blank');
         }
     </script>
 </body>
