@@ -6,7 +6,7 @@
     <title>OPENPI.AI | SYSTEM KERNEL</title>
     <meta name="description" content="openpi.ai - The interface between transcendental constants and Artificial General Intelligence.">
 
-    <!-- Fonts: 'Share Tech Mono' for UI, 'Times' fallback for Math to ensure academic look -->
+    <!-- Fonts: 'Share Tech Mono' for UI, 'Times' fallback for Math -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -22,11 +22,7 @@
             --scan-line: rgba(0,0,0,0.5);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg-color);
@@ -38,236 +34,110 @@
             min-height: 100vh;
         }
 
-        /* --- CUSTOM SCROLLBAR (Right Side Energy Bar) --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #111;
-            border-left: 1px solid #333;
-        }
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; border-left: 1px solid #333; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--pi-orange), var(--ai-cyan));
             border-radius: 4px;
             box-shadow: 0 0 10px var(--ai-cyan);
         }
 
-        /* --- BACKGROUND GRID & EFFECTS --- */
+        /* --- BACKGROUND FX --- */
         .bg-grid {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: 
                 linear-gradient(var(--grid-color) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-            pointer-events: none;
+            background-size: 40px 40px; z-index: -2; pointer-events: none;
         }
-        
         .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
-            background-size: 100% 4px;
-            z-index: 100;
-            pointer-events: none;
-            opacity: 0.6;
+            background-size: 100% 4px; z-index: 100; pointer-events: none; opacity: 0.6;
         }
 
         /* --- HEADER --- */
-        header {
-            text-align: center;
-            padding-top: 2rem;
-            z-index: 10;
-        }
-
+        header { text-align: center; padding-top: 2rem; z-index: 10; }
         .logo-container {
-            display: inline-block;
-            border: 1px solid #333;
-            padding: 0.5rem 1.5rem;
-            background: rgba(0,0,0,0.8);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+            display: inline-block; border: 1px solid #333; padding: 0.5rem 1.5rem;
+            background: rgba(0,0,0,0.8); box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
-
-        .logo {
-            font-size: 1.5rem; /* Smaller font as requested */
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-
+        .logo { font-size: 1.5rem; letter-spacing: 0.2em; text-transform: uppercase; }
         .logo .pi { color: #fff; text-shadow: 0 0 5px #fff; }
         .logo .ai { color: var(--ai-cyan); font-weight: bold; animation: glitch 3s infinite alternate; }
 
-        /* --- MAIN FORMULA STAGE --- */
+        /* --- STAGE --- */
         .stage {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            position: relative;
-            min-height: 40vh;
+            flex: 1; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; padding: 2rem; position: relative; min-height: 40vh;
         }
-
-        /* The Red Box Area Logic (Invisible boundary, visible content) */
-        .formula-display {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-            position: relative;
-        }
-
+        .formula-display { width: 100%; max-width: 900px; text-align: center; position: relative; }
+        
         .formula-content {
-            font-family: "Times New Roman", Times, serif; /* Academic Standard */
-            /* FLUID TYPOGRAPHY: Scales between 1.5rem and 3.5rem based on screen width */
-            font-size: clamp(1.5rem, 5vw, 3.5rem);
-            font-style: italic;
-            line-height: 1.4;
-            color: #fff;
+            font-family: "Times New Roman", Times, serif;
+            font-size: clamp(1.5rem, 5vw, 3.5rem); /* Responsive sizing */
+            font-style: italic; line-height: 1.4; color: #fff;
             text-shadow: 0 0 20px rgba(255, 94, 0, 0.4);
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease-out;
-            
-            /* Ensure complete display on mobile */
-            word-wrap: break-word; 
-            white-space: normal;
+            opacity: 0; transform: scale(0.9); transition: all 0.8s ease-out;
+            word-wrap: break-word; white-space: normal;
         }
-
-        .formula-content.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
+        .formula-content.active { opacity: 1; transform: scale(1); }
+        
         .formula-label {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: var(--ai-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            border-top: 1px solid #333;
-            display: inline-block;
-            padding-top: 0.5rem;
+            margin-top: 1rem; font-size: 0.8rem; color: var(--ai-cyan);
+            text-transform: uppercase; letter-spacing: 0.15em;
+            border-top: 1px solid #333; display: inline-block; padding-top: 0.5rem;
         }
 
-        /* --- FIXED 12 GRID SYSTEM --- */
+        /* --- GRID --- */
         .system-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Desktop: 4 cols */
-            gap: 10px;
-            max-width: 1000px;
-            margin: 0 auto 2rem auto;
-            padding: 0 20px;
-            width: 100%;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            max-width: 1000px; margin: 0 auto 2rem auto; padding: 0 20px; width: 100%;
         }
-
         .module {
-            border: 1px solid #222;
-            background: rgba(10, 10, 10, 0.8);
-            padding: 10px;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid #222; background: rgba(10, 10, 10, 0.8);
+            padding: 10px; font-size: 0.75rem; color: var(--text-dim);
+            transition: all 0.3s; position: relative; overflow: hidden; cursor: default;
         }
-
         .module:hover {
-            border-color: var(--ai-cyan);
-            color: #fff;
-            background: rgba(0, 240, 255, 0.05);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+            border-color: var(--ai-cyan); color: #fff;
+            background: rgba(0, 240, 255, 0.05); box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
         }
-
         .module::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 2px; height: 100%;
-            background: var(--pi-orange);
-            opacity: 0;
-            transition: opacity 0.3s;
+            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%;
+            background: var(--pi-orange); opacity: 0; transition: opacity 0.3s;
         }
         .module:hover::before { opacity: 1; }
-
         .module-id { display: block; font-size: 0.6rem; margin-bottom: 4px; color: #444; }
 
-        /* Mobile Grid Adjustment */
-        @media (max-width: 768px) {
-            .system-grid {
-                grid-template-columns: repeat(2, 1fr); /* Mobile: 2 cols */
-            }
-        }
+        @media (max-width: 768px) { .system-grid { grid-template-columns: repeat(2, 1fr); } }
 
-        /* --- PRICING & CTA --- */
+        /* --- FOOTER --- */
         .control-panel {
-            background: #080808;
-            border-top: 1px solid var(--ai-cyan);
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
+            background: #080808; border-top: 1px solid var(--ai-cyan);
+            padding: 2rem 0; text-align: center;
         }
-
-        .price-readout {
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-        
+        .price-readout { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; }
         .price-readout span { font-size: 1rem; color: var(--text-dim); }
-
+        
         .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 20px; margin-top: 1.5rem; flex-wrap: wrap;
         }
-
         .btn {
-            background: transparent;
-            border: 1px solid var(--text-dim);
-            color: #fff;
-            padding: 1rem 3rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-            text-decoration: none;
-            font-size: 0.9rem;
+            background: transparent; border: 1px solid var(--text-dim); color: #fff;
+            padding: 1rem 3rem; text-transform: uppercase; letter-spacing: 0.1em;
+            cursor: pointer; transition: 0.3s; text-decoration: none; font-size: 0.9rem;
         }
+        .btn-buy { border-color: var(--pi-orange); box-shadow: 0 0 10px rgba(255, 94, 0, 0.2); }
+        .btn-buy:hover { background: var(--pi-orange); color: #000; box-shadow: 0 0 25px rgba(255, 94, 0, 0.6); }
+        .btn-contact:hover { border-color: var(--ai-cyan); color: var(--ai-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
 
-        .btn-buy {
-            border-color: var(--pi-orange);
-            box-shadow: 0 0 10px rgba(255, 94, 0, 0.2);
-        }
-
-        .btn-buy:hover {
-            background: var(--pi-orange);
-            color: #000;
-            box-shadow: 0 0 25px rgba(255, 94, 0, 0.6);
-        }
-
-        .btn-contact:hover {
-            border-color: var(--ai-cyan);
-            color: var(--ai-cyan);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-
-        /* Disclaimer */
         .legal {
-            margin-top: 2rem;
-            font-size: 0.6rem;
-            color: #333;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            margin-top: 3rem; font-size: 0.65rem; color: #444; max-width: 700px;
+            margin-left: auto; margin-right: auto; line-height: 1.6; padding: 0 20px;
         }
 
-        /* --- ANIMATIONS --- */
         @keyframes glitch {
             0% { opacity: 1; transform: skew(0deg); }
             20% { opacity: 0.8; transform: skew(-2deg); }
@@ -276,19 +146,10 @@
         }
 
         #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: var(--ai-cyan);
-            color: #000;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            z-index: 101;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: bold;
-            box-shadow: 0 0 20px var(--ai-cyan);
+            visibility: hidden; min-width: 250px; background-color: var(--ai-cyan);
+            color: #000; text-align: center; padding: 10px; position: fixed;
+            z-index: 101; bottom: 30px; left: 50%; transform: translateX(-50%);
+            font-weight: bold; box-shadow: 0 0 20px var(--ai-cyan);
         }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
@@ -308,16 +169,13 @@
         </div>
     </header>
 
-    <!-- THE CORE STAGE: Rotating Formulas -->
     <main class="stage">
         <div class="formula-display">
-            <!-- Content injected by JS -->
-            <div id="formula-slot" class="formula-content">Initializing...</div>
-            <div id="formula-label" class="formula-label">SYSTEM CHECK</div>
+            <div id="formula-slot" class="formula-content">Initializing Kernel...</div>
+            <div id="formula-label" class="formula-label">WAITING FOR INPUT</div>
         </div>
     </main>
 
-    <!-- FIXED GRID: 12 Concepts -->
     <section class="system-grid">
         <div class="module"><span class="module-id">01</span>THE HIDDEN ARCHITECT</div>
         <div class="module"><span class="module-id">02</span>STRING THEORY CODE</div>
@@ -333,7 +191,6 @@
         <div class="module"><span class="module-id">12</span>THE PERFECT LOOP</div>
     </section>
 
-    <!-- CONTROL PANEL -->
     <footer class="control-panel">
         <div class="price-readout">$31,415 <span>[5-PART ALLOCATION]</span></div>
         
@@ -343,36 +200,66 @@
         </div>
 
         <div class="legal">
-            DOMAIN ASSET: OPENPI.AI <br>
-            STATUS: AVAILABLE // ORIGIN: SPACESHIP.COM SECURE TRANSFER<br>
-            NOTE: "Pi" entities are mathematical constructs. Not affiliated with Raspberry Pi Foundation or Inflection AI.
+            &copy; 2026 OpenPi Concept. All rights reserved.<br><br>
+            Disclaimer: OpenPi.ai is a premium domain asset available for acquisition. 
+            References to mathematical constants, scientific theories, or "Pi" are for branding and conceptual purposes only. 
+            This domain is not affiliated with the Raspberry Pi Foundation, Inflection AI, or any specific academic institution. 
+            Transaction facilitated securely via Spaceship.com.
         </div>
     </footer>
 
     <div id="toast">>> CONTACT PROTOCOL COPIED</div>
 
     <script>
-        // Data: The Formulas
+        // EXPANDED DATASET: 12 Core Formulas
         const formulas = [
             {
-                math: "e^{i\\pi} + 1 = 0",
+                math: "e<sup>iπ</sup> + 1 = 0",
                 desc: "EULER'S IDENTITY // THE BEAUTIFUL ZERO"
             },
             {
-                math: "R_{\\mu\\nu} - \\frac{1}{2}Rg_{\\mu\\nu} = \\frac{8\\pi G}{c^4}T_{\\mu\\nu}",
+                math: "R<sub>μν</sub> - ½Rg<sub>μν</sub> = (8πG / c<sup>4</sup>)T<sub>μν</sub>",
                 desc: "GENERAL RELATIVITY // SPACETIME CURVATURE"
             },
             {
-                math: "\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}",
+                math: "∫ e<sup>-x²</sup> dx = √π",
                 desc: "GAUSSIAN INTEGRAL // PROBABILITY KERNEL"
             },
             {
-                math: "\\frac{1}{\\pi} = \\frac{2\\sqrt{2}}{9801} \\sum_{k=0}^\\infty \\frac{(4k)!(1103+26390k)}{(k!)^4 396^{4k}}",
+                math: "ΔxΔp ≥ h / 4π",
+                desc: "HEISENBERG UNCERTAINTY // QUANTUM LIMITS"
+            },
+            {
+                math: "1/π = (2√2 / 9801) Σ ...", 
                 desc: "RAMANUJAN'S SERIES // ALGORITHMIC INTUITION"
             },
             {
-                math: "C = 2\\pi r",
-                desc: "GEOMETRIC ORIGIN // THE PERFECT CIRCLE"
+                math: "V<sub>n</sub>(R) = ( π<sup>n/2</sup> / Γ(n/2 + 1) ) R<sup>n</sup>",
+                desc: "N-DIMENSIONAL SPHERE // VECTOR SPACE GEOMETRY"
+            },
+            {
+                math: "Σ (1/n²) = π²/6",
+                desc: "BASEL PROBLEM // NUMBER THEORY CONVERGENCE"
+            },
+            {
+                math: "f(x) = a₀/2 + Σ [ aₙcos(nx) + bₙsin(nx) ]",
+                desc: "FOURIER SERIES // SIGNAL PROCESSING 2π"
+            },
+            {
+                math: "F = ( 1 / 4πε₀ ) ( q₁q₂ / r² )",
+                desc: "COULOMB'S LAW // ELECTROMAGNETIC FORCE"
+            },
+            {
+                math: "T = 2π √(L/g)",
+                desc: "SIMPLE PENDULUM // HARMONIC OSCILLATION"
+            },
+            {
+                math: "n! ≈ √(2πn) (n/e)<sup>n</sup>",
+                desc: "STIRLING'S APPROXIMATION // FACTORIAL COMPLEXITY"
+            },
+            {
+                math: "∮ B⋅dl = μ₀( I + ε₀ dΦ/dt )",
+                desc: "AMPERE-MAXWELL // CIRCULATION FIELDS"
             }
         ];
 
@@ -381,40 +268,23 @@
         const label = document.getElementById('formula-label');
 
         function rotateFormula() {
-            // Fade out
             slot.classList.remove('active');
             
             setTimeout(() => {
-                // Update content
-                slot.textContent = ""; // Clear plain text to render HTML entities if needed
-                // We use innerHTML to allow subscripts/superscripts if we were using complex HTML, 
-                // but here we keep it text-based for "Code" feel, using simple chars or LaTeX string.
-                // To make it look "rendered" without MathJax, we keep the raw LaTeX string 
-                // because it looks more "Geeky/Code-like" for this specific user persona.
-                // OR we can render simple chars. Let's do a mix for readability + geekiness.
-                
-                // Converting LaTeX to somewhat readable Unicode for the specific "Visual" request
-                // while keeping the structure complete.
-                if(index === 0) slot.innerHTML = "e<sup>iπ</sup> + 1 = 0";
-                else if(index === 1) slot.innerHTML = "R<sub>μν</sub> - ½Rg<sub>μν</sub> = (8πG / c<sup>4</sup>)T<sub>μν</sub>";
-                else if(index === 2) slot.innerHTML = "∫ e<sup>-x²</sup> dx = √π";
-                else if(index === 3) slot.innerHTML = "1/π = (2√2 / 9801) Σ ..."; // Keeping it clean for mobile
-                else slot.innerHTML = formulas[index].math;
-
+                // Using innerHTML to support Superscripts (sup) and Subscripts (sub) for better readability
+                slot.innerHTML = formulas[index].math;
                 label.textContent = formulas[index].desc;
                 
-                // Fade in
                 slot.classList.add('active');
                 
                 index = (index + 1) % formulas.length;
-            }, 800);
+            }, 600);
         }
 
         // Start Loop
-        rotateFormula(); // Immediate start
-        setInterval(rotateFormula, 4500);
+        rotateFormula();
+        setInterval(rotateFormula, 4000); // 4 seconds per formula
 
-        // Interaction Functions
         function copyEmail() {
             navigator.clipboard.writeText("joshua369x@gmail.com").then(() => {
                 const toast = document.getElementById("toast");
