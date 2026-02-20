@@ -18,7 +18,7 @@
             --pi-orange: #ff5e00;
             --text-dim: #555;
             --scan-line: rgba(0,0,0,0.5);
-            --success: #0aff0a;
+            --success: #0aff0a; /* term-green */
             --error: #ff4757;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -154,7 +154,7 @@
         .btn-offer-submit:hover { background: var(--term-green); color: #000; box-shadow: 0 0 15px var(--term-green); }
         .btn-offer-submit:disabled { opacity: 0.4; cursor: not-allowed; }
         #form-status {
-            height: 1.2rem; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.05em;
+            height: 1.2rem; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.05em; display: none;
         }
         #form-status.success { color: var(--success); }
         #form-status.error { color: var(--error); }
@@ -281,23 +281,27 @@
             window.open("https://www.spaceship.com/s/buy/openpi.ai/rzv705rALhDnVTjj", '_blank');
         }
 
-        // --- RELIABLE AJAX FORM SUBMISSION LOGIC ---
-        document.addEventListener('DOMContentLoaded', function() {
+        // --- RELIABLE AJAX FORM LOGIC (Based on 1A1z.ai reference) ---
+        function initOfferForm() {
             const form = document.getElementById('offer-form');
             const statusDiv = document.getElementById('form-status');
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    const submitButton = form.querySelector('button[type="submit"]');
+                    
+                    const submitButton = form.querySelector('.btn-offer-submit');
                     const originalButtonText = submitButton.innerHTML;
                     
                     submitButton.innerHTML = 'TRANSMITTING...';
                     submitButton.disabled = true;
-                    statusDiv.textContent = 'Establishing secure link...';
-                    statusDiv.className = '';
+                    statusDiv.style.display = "block"; // Make it visible
+                    statusDiv.className = ''; // Reset class
+                    statusDiv.innerText = 'Establishing secure link...';
+
 
                     const formData = new FormData(form);
                     
+                    // Force FormSubmit's AJAX endpoint
                     let actionUrl = form.action;
                     if (!actionUrl.includes('/ajax/')) {
                         actionUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
@@ -308,19 +312,15 @@
                         body: formData,
                         headers: { 'Accept': 'application/json' }
                     })
-                    .then(response => response.ok ? response.json() : Promise.reject(response))
+                    .then(response => response.json())
                     .then(data => {
-                        if (data.success) {
-                            statusDiv.textContent = ">> TRANSMISSION SUCCESSFUL. STAND BY FOR RESPONSE.";
-                            statusDiv.className = 'success';
-                            form.reset();
-                            submitButton.innerHTML = "OFFER SENT!";
-                        } else {
-                            throw new Error(data.message || 'Server error.');
-                        }
+                        statusDiv.innerText = ">> TRANSMISSION SUCCESSFUL. STAND BY.";
+                        statusDiv.className = 'success';
+                        form.reset();
+                        submitButton.innerHTML = "OFFER SENT!";
                     })
                     .catch(error => {
-                        statusDiv.textContent = ">> ERROR: CONNECTION INTERRUPTED. PLEASE RETRY.";
+                        statusDiv.innerText = ">> ERROR: CONNECTION INTERRUPTED. PLEASE RETRY.";
                         statusDiv.className = 'error';
                         console.error('Form Error:', error);
                         submitButton.innerHTML = originalButtonText;
@@ -332,11 +332,15 @@
                                 submitButton.innerHTML = originalButtonText;
                                 submitButton.disabled = false;
                             }
-                            statusDiv.textContent = '';
+                            statusDiv.style.display = "none";
                         }, 5000);
                     });
                 });
             }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initOfferForm();
         });
     </script>
 </body>
