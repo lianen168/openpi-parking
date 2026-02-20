@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPENPI.AI | SYSTEM KERNEL</title>
     <meta name="description" content="openpi.ai - The interface between transcendental constants and Artificial General Intelligence.">
-
     <!-- Fonts: 'Share Tech Mono' for UI, 'Times' fallback for Math -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --bg-color: #030303;
@@ -20,10 +18,10 @@
             --pi-orange: #ff5e00;
             --text-dim: #555;
             --scan-line: rgba(0,0,0,0.5);
+            --success: #0aff0a;
+            --error: #ff4757;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             background-color: var(--bg-color);
             color: #dcdcdc;
@@ -33,7 +31,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
         /* --- SCROLLBAR --- */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #111; border-left: 1px solid #333; }
@@ -42,7 +39,6 @@
             border-radius: 4px;
             box-shadow: 0 0 10px var(--ai-cyan);
         }
-
         /* --- BACKGROUND FX --- */
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -56,7 +52,6 @@
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
             background-size: 100% 4px; z-index: 100; pointer-events: none; opacity: 0.6;
         }
-
         /* --- HEADER --- */
         header { text-align: center; padding-top: 2rem; z-index: 10; }
         .logo-container {
@@ -66,7 +61,6 @@
         .logo { font-size: 1.5rem; letter-spacing: 0.2em; text-transform: uppercase; }
         .logo .pi { color: #fff; text-shadow: 0 0 5px #fff; }
         .logo .ai { color: var(--ai-cyan); font-weight: bold; animation: glitch 3s infinite alternate; }
-
         /* --- STAGE --- */
         .stage {
             flex: 1; display: flex; flex-direction: column; justify-content: center;
@@ -89,7 +83,6 @@
             text-transform: uppercase; letter-spacing: 0.15em;
             border-top: 1px solid #333; display: inline-block; padding-top: 0.5rem;
         }
-
         /* --- GRID --- */
         .system-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
@@ -110,9 +103,7 @@
         }
         .module:hover::before { opacity: 1; }
         .module-id { display: block; font-size: 0.6rem; margin-bottom: 4px; color: #444; }
-
         @media (max-width: 768px) { .system-grid { grid-template-columns: repeat(2, 1fr); } }
-
         /* --- FOOTER --- */
         .control-panel {
             background: #080808; border-top: 1px solid var(--ai-cyan);
@@ -132,19 +123,46 @@
         .btn-buy { border-color: var(--pi-orange); box-shadow: 0 0 10px rgba(255, 94, 0, 0.2); }
         .btn-buy:hover { background: var(--pi-orange); color: #000; box-shadow: 0 0 25px rgba(255, 94, 0, 0.6); }
         .btn-contact:hover { border-color: var(--ai-cyan); color: var(--ai-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
-
         .legal {
             margin-top: 3rem; font-size: 0.65rem; color: #444; max-width: 700px;
             margin-left: auto; margin-right: auto; line-height: 1.6; padding: 0 20px;
         }
+        /* --- OFFER FORM STYLES --- */
+        .offer-form-container {
+            margin: 3rem auto 0 auto; padding-top: 2rem;
+            max-width: 500px; border-top: 1px dashed #333;
+        }
+        .offer-form-title {
+            color: var(--term-green); font-size: 1rem; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 1.5rem;
+        }
+        #offer-form { display: flex; flex-direction: column; gap: 15px; }
+        #offer-form input {
+            background: #111; border: 1px solid #222; color: #ddd;
+            padding: 1rem; text-align: center; font-family: inherit; font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        #offer-form input::placeholder { color: var(--text-dim); }
+        #offer-form input:focus {
+            outline: none; border-color: var(--pi-orange);
+            background: #1a1a1a; box-shadow: 0 0 10px rgba(255, 94, 0, 0.3);
+        }
+        .btn-offer-submit {
+            background: transparent; border: 1px solid var(--term-green); color: var(--term-green);
+            padding: 1rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: 0.3s;
+        }
+        .btn-offer-submit:hover { background: var(--term-green); color: #000; box-shadow: 0 0 15px var(--term-green); }
+        .btn-offer-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+        #form-status {
+            height: 1.2rem; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.05em;
+        }
+        #form-status.success { color: var(--success); }
+        #form-status.error { color: var(--error); }
 
         @keyframes glitch {
-            0% { opacity: 1; transform: skew(0deg); }
-            20% { opacity: 0.8; transform: skew(-2deg); }
-            40% { opacity: 1; transform: skew(2deg); }
-            100% { opacity: 1; transform: skew(0deg); }
+            0% { opacity: 1; transform: skew(0deg); } 20% { opacity: 0.8; transform: skew(-2deg); }
+            40% { opacity: 1; transform: skew(2deg); } 100% { opacity: 1; transform: skew(0deg); }
         }
-
         #toast {
             visibility: hidden; min-width: 250px; background-color: var(--ai-cyan);
             color: #000; text-align: center; padding: 10px; position: fixed;
@@ -157,10 +175,8 @@
     </style>
 </head>
 <body>
-
     <div class="bg-grid"></div>
     <div class="scanlines"></div>
-
     <header>
         <div class="logo-container">
             <div class="logo">
@@ -168,14 +184,12 @@
             </div>
         </div>
     </header>
-
     <main class="stage">
         <div class="formula-display">
             <div id="formula-slot" class="formula-content">Initializing Kernel...</div>
             <div id="formula-label" class="formula-label">WAITING FOR INPUT</div>
         </div>
     </main>
-
     <section class="system-grid">
         <div class="module"><span class="module-id">01</span>THE HIDDEN ARCHITECT</div>
         <div class="module"><span class="module-id">02</span>STRING THEORY CODE</div>
@@ -190,13 +204,29 @@
         <div class="module"><span class="module-id">11</span>COSMIC CALIBRATION</div>
         <div class="module"><span class="module-id">12</span>THE PERFECT LOOP</div>
     </section>
-
     <footer class="control-panel">
         <div class="price-readout">$31,415 <span>[5-PART ALLOCATION]</span></div>
         
         <div class="btn-group">
             <a href="#" onclick="buyAction()" class="btn btn-buy">INITIALIZE ACQUISITION</a>
             <button onclick="copyEmail()" class="btn btn-contact">PING ADMIN</button>
+        </div>
+
+        <!-- Offer Form Section -->
+        <div class="offer-form-container">
+            <div class="offer-form-title">> SUBMIT COUNTER-OFFER</div>
+            <form id="offer-form" action="https://formsubmit.co/zlqsl2018@gmail.com" method="POST">
+                <!-- FormSubmit Settings -->
+                <input type="hidden" name="_subject" value="New Offer for openpi.ai">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+
+                <input type="number" name="offer_amount" placeholder="OFFER_AMOUNT_USD" required>
+                <input type="email" name="email" placeholder="YOUR_CONTACT_EMAIL" required>
+                
+                <button type="submit" class="btn-offer-submit">TRANSMIT OFFER</button>
+            </form>
+            <p id="form-status"></p>
         </div>
 
         <div class="legal">
@@ -207,84 +237,39 @@
             Transaction facilitated securely via Spaceship.com.
         </div>
     </footer>
-
     <div id="toast">>> CONTACT PROTOCOL COPIED</div>
-
     <script>
-        // EXPANDED DATASET: 12 Core Formulas
+        // --- FORMULA ROTATION SCRIPT ---
         const formulas = [
-            {
-                math: "e<sup>iπ</sup> + 1 = 0",
-                desc: "EULER'S IDENTITY // THE BEAUTIFUL ZERO"
-            },
-            {
-                math: "R<sub>μν</sub> - ½Rg<sub>μν</sub> = (8πG / c<sup>4</sup>)T<sub>μν</sub>",
-                desc: "GENERAL RELATIVITY // SPACETIME CURVATURE"
-            },
-            {
-                math: "∫ e<sup>-x²</sup> dx = √π",
-                desc: "GAUSSIAN INTEGRAL // PROBABILITY KERNEL"
-            },
-            {
-                math: "ΔxΔp ≥ h / 4π",
-                desc: "HEISENBERG UNCERTAINTY // QUANTUM LIMITS"
-            },
-            {
-                math: "1/π = (2√2 / 9801) Σ ...", 
-                desc: "RAMANUJAN'S SERIES // ALGORITHMIC INTUITION"
-            },
-            {
-                math: "V<sub>n</sub>(R) = ( π<sup>n/2</sup> / Γ(n/2 + 1) ) R<sup>n</sup>",
-                desc: "N-DIMENSIONAL SPHERE // VECTOR SPACE GEOMETRY"
-            },
-            {
-                math: "Σ (1/n²) = π²/6",
-                desc: "BASEL PROBLEM // NUMBER THEORY CONVERGENCE"
-            },
-            {
-                math: "f(x) = a₀/2 + Σ [ aₙcos(nx) + bₙsin(nx) ]",
-                desc: "FOURIER SERIES // SIGNAL PROCESSING 2π"
-            },
-            {
-                math: "F = ( 1 / 4πε₀ ) ( q₁q₂ / r² )",
-                desc: "COULOMB'S LAW // ELECTROMAGNETIC FORCE"
-            },
-            {
-                math: "T = 2π √(L/g)",
-                desc: "SIMPLE PENDULUM // HARMONIC OSCILLATION"
-            },
-            {
-                math: "n! ≈ √(2πn) (n/e)<sup>n</sup>",
-                desc: "STIRLING'S APPROXIMATION // FACTORIAL COMPLEXITY"
-            },
-            {
-                math: "∮ B⋅dl = μ₀( I + ε₀ dΦ/dt )",
-                desc: "AMPERE-MAXWELL // CIRCULATION FIELDS"
-            }
+            { math: "e<sup>iπ</sup> + 1 = 0", desc: "EULER'S IDENTITY // THE BEAUTIFUL ZERO" },
+            { math: "R<sub>μν</sub> - ½Rg<sub>μν</sub> = (8πG / c<sup>4</sup>)T<sub>μν</sub>", desc: "GENERAL RELATIVITY // SPACETIME CURVATURE" },
+            { math: "∫ e<sup>-x²</sup> dx = √π", desc: "GAUSSIAN INTEGRAL // PROBABILITY KERNEL" },
+            { math: "ΔxΔp ≥ h / 4π", desc: "HEISENBERG UNCERTAINTY // QUANTUM LIMITS" },
+            { math: "1/π = (2√2 / 9801) Σ ...", desc: "RAMANUJAN'S SERIES // ALGORITHMIC INTUITION" },
+            { math: "V<sub>n</sub>(R) = ( π<sup>n/2</sup> / Γ(n/2 + 1) ) R<sup>n</sup>", desc: "N-DIMENSIONAL SPHERE // VECTOR SPACE GEOMETRY" },
+            { math: "Σ (1/n²) = π²/6", desc: "BASEL PROBLEM // NUMBER THEORY CONVERGENCE" },
+            { math: "f(x) = a₀/2 + Σ [ aₙcos(nx) + bₙsin(nx) ]", desc: "FOURIER SERIES // SIGNAL PROCESSING 2π" },
+            { math: "F = ( 1 / 4πε₀ ) ( q₁q₂ / r² )", desc: "COULOMB'S LAW // ELECTROMAGNETIC FORCE" },
+            { math: "T = 2π √(L/g)", desc: "SIMPLE PENDULUM // HARMONIC OSCILLATION" },
+            { math: "n! ≈ √(2πn) (n/e)<sup>n</sup>", desc: "STIRLING'S APPROXIMATION // FACTORIAL COMPLEXITY" },
+            { math: "∮ B⋅dl = μ₀( I + ε₀ dΦ/dt )", desc: "AMPERE-MAXWELL // CIRCULATION FIELDS" }
         ];
-
         let index = 0;
         const slot = document.getElementById('formula-slot');
         const label = document.getElementById('formula-label');
-
         function rotateFormula() {
             slot.classList.remove('active');
-            
             setTimeout(() => {
-                // Using innerHTML to support Superscripts (sup) and Subscripts (sub) for better readability
                 slot.innerHTML = formulas[index].math;
                 label.textContent = formulas[index].desc;
-                
                 slot.classList.add('active');
-                
                 index = (index + 1) % formulas.length;
             }, 600);
         }
-
-        // Start Loop
         rotateFormula();
-        setInterval(rotateFormula, 4000); // 4 seconds per formula
+        setInterval(rotateFormula, 4000);
 
+        // --- CONTACT & BUY ACTIONS ---
         function copyEmail() {
             navigator.clipboard.writeText("joshua369x@gmail.com").then(() => {
                 const toast = document.getElementById("toast");
@@ -292,10 +277,67 @@
                 setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
             });
         }
-
         function buyAction() {
             window.open("https://www.spaceship.com/s/buy/openpi.ai/rzv705rALhDnVTjj", '_blank');
         }
+
+        // --- RELIABLE AJAX FORM SUBMISSION LOGIC ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('offer-form');
+            const statusDiv = document.getElementById('form-status');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    
+                    submitButton.innerHTML = 'TRANSMITTING...';
+                    submitButton.disabled = true;
+                    statusDiv.textContent = 'Establishing secure link...';
+                    statusDiv.className = '';
+
+                    const formData = new FormData(form);
+                    
+                    let actionUrl = form.action;
+                    if (!actionUrl.includes('/ajax/')) {
+                        actionUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+                    }
+                    
+                    fetch(actionUrl, {
+                        method: "POST",
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    })
+                    .then(response => response.ok ? response.json() : Promise.reject(response))
+                    .then(data => {
+                        if (data.success) {
+                            statusDiv.textContent = ">> TRANSMISSION SUCCESSFUL. STAND BY FOR RESPONSE.";
+                            statusDiv.className = 'success';
+                            form.reset();
+                            submitButton.innerHTML = "OFFER SENT!";
+                        } else {
+                            throw new Error(data.message || 'Server error.');
+                        }
+                    })
+                    .catch(error => {
+                        statusDiv.textContent = ">> ERROR: CONNECTION INTERRUPTED. PLEASE RETRY.";
+                        statusDiv.className = 'error';
+                        console.error('Form Error:', error);
+                        submitButton.innerHTML = originalButtonText;
+                        submitButton.disabled = false;
+                    })
+                    .finally(() => {
+                        setTimeout(() => {
+                            if (submitButton.innerHTML === "OFFER SENT!") {
+                                submitButton.innerHTML = originalButtonText;
+                                submitButton.disabled = false;
+                            }
+                            statusDiv.textContent = '';
+                        }, 5000);
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
