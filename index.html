@@ -18,7 +18,7 @@
             --pi-orange: #ff5e00;
             --text-dim: #555;
             --scan-line: rgba(0,0,0,0.5);
-            --success: #0aff0a; /* term-green */
+            --success: #0aff0a;
             --error: #ff4757;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -294,23 +294,22 @@
                     
                     submitButton.innerHTML = 'TRANSMITTING...';
                     submitButton.disabled = true;
-                    statusDiv.style.display = "block"; // Make it visible
-                    statusDiv.className = ''; // Reset class
+                    statusDiv.style.display = "block";
+                    statusDiv.className = ''; 
                     statusDiv.innerText = 'Establishing secure link...';
-
 
                     const formData = new FormData(form);
                     
-                    // Force FormSubmit's AJAX endpoint
+                    // Force AJAX URL
                     let actionUrl = form.action;
                     if (!actionUrl.includes('/ajax/')) {
                         actionUrl = actionUrl.replace('formsubmit.co/', 'formsubmit.co/ajax/');
                     }
                     
-                    fetch(actionUrl, {
-                        method: "POST",
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
+                    // The fetch call now exactly mirrors the working 1A1z.ai version
+                    fetch(actionUrl, { 
+                        method: "POST", 
+                        body: formData 
                     })
                     .then(response => response.json())
                     .then(data => {
@@ -332,7 +331,7 @@
                                 submitButton.innerHTML = originalButtonText;
                                 submitButton.disabled = false;
                             }
-                            statusDiv.style.display = "none";
+                            statusDiv.style.display = 'none';
                         }, 5000);
                     });
                 });
